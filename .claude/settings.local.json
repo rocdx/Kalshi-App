@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c ' *)",
+      "Bash(node --check src/components/FeeDragCard.jsx)",
+      "Bash(node --check src/App.jsx)",
+      "Bash(curl -s http://localhost:5173/src/App.jsx -o /dev/null -w \"%{http_code}\\\\n\")",
+      "Bash(curl -s http://localhost:5173/ -o /dev/null -w \"%{http_code}\\\\n\")",
+      "Bash(npm install *)",
+      "Bash(node -e ' *)"
+    ]
+  }
+}

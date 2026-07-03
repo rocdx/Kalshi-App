@@ -1,8 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Dropzone from './components/Dropzone'
 import BetTable from './components/BetTable'
+import FeeDragCard from './components/FeeDragCard'
+import PnlTimelineChart from './components/PnlTimelineChart'
 import { parseCsvFile } from './lib/parseCsv'
 import { normalizeBet } from './lib/normalizeBet'
+import { computeFeeDrag } from './lib/feeDrag'
+import { computeDailyPnl } from './lib/dailyPnl'
 
 const styles = {
   app: {
@@ -36,6 +40,12 @@ function App() {
   const [bets, setBets] = useState([])
   const [skippedCount, setSkippedCount] = useState(0)
   const [error, setError] = useState('')
+
+  const feeDragStats = useMemo(
+    () => (bets.length > 0 ? computeFeeDrag(bets) : null),
+    [bets]
+  )
+  const dailyPnl = useMemo(() => computeDailyPnl(bets), [bets])
 
   useEffect(() => {
     document.body.style.margin = '0'
@@ -79,6 +89,8 @@ function App() {
               ? ` (${skippedCount} non-trade rows skipped)`
               : ''}
           </p>
+          <PnlTimelineChart data={dailyPnl} />
+          <FeeDragCard stats={feeDragStats} />
           <BetTable bets={bets} />
         </>
       )}
