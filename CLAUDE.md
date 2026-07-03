@@ -17,19 +17,21 @@ The goal is AWARENESS and ACCOUNTABILITY, not helping people bet more or win mor
 
 ## Who the user is
 
-A sports bettor who uses Kalshi as their sportsbook. They bet game- and team-level
-markets: moneylines, spreads, totals (points/runs), corners, home runs, both-teams-to-
-score. They also often have significant esports (Valorant, CS2) and short-term markets
-(e.g. Bitcoin 15-minute) volume — but treat these as SIDE/IMPULSE BETS, not researched
-plays. The user does not analyze these the way they analyze their sports bets; they're
-more casual, higher-volume, lower-thought action. That distinction is behaviorally
-important: don't judge them for skill/edge (they were never meant as edge plays), but DO
-feed them into the behavioral frameworks — they're often exactly where chasing losses,
-tilt/sizing spikes, and overtrading show up. In short: exclude side bets from
-skill/price-quality judgments, but include them in the emotional/behavioral analysis.
-They hold most sports bets to settlement rather than flipping positions. They are
-analytical and will NOTICE if an insight is hollow — so every claim must be provable
-from their data, never storytelling.
+Anyone who trades on Kalshi as a betting platform, across any market category — sports,
+esports, crypto, politics, entertainment, weather, whatever Kalshi lists. The app makes
+no assumption about what a given user researches versus bets on impulsively; that
+distinction isn't visible in the data and shouldn't be invented. Everything in Phase 1
+works off the CSV numbers alone — price discipline, fee drag, tilt/sizing, and
+overtrading are provable from timestamps and prices regardless of what category the user
+was betting in or how much thought they put into it.
+
+Users are analytical and will NOTICE if an insight is hollow — so every claim must be
+provable from their data, never storytelling.
+
+(The example CSV used during development belongs to one bettor with heavy sports +
+esports + crypto volume. That's just one possible shape of the data — don't bake
+assumptions about category mix, hold-to-settlement behavior, or "researched vs. side
+bet" into the app itself.)
 
 ## The data we have (Kalshi transaction CSV)
 
@@ -57,8 +59,11 @@ Tickers are structured but each market type has its own pattern. Real examples:
 - `KXNBATOTAL`, `KXMLBGAME`, `KXVALORANTGAME`, `KXBTC15M`, etc.
 
 Build a parser that extracts, per row: market TYPE (spread/total/moneyline/corners/etc),
-SPORT/category (NBA/MLB/soccer/esports/crypto), and DATE. Player-level detail is NOT a
-goal — we are explicitly not doing player props. Parse only to the market/category level.
+CATEGORY (sport/genre — NBA/MLB/soccer/esports/crypto/politics/etc.), and DATE.
+Player-level detail is NOT a goal — we are explicitly not doing player props. Parse only
+to the market/category level. Since users can bet across any category Kalshi offers, the
+parser should degrade gracefully (a reasonable best-guess category) rather than fail on
+ticker prefixes it hasn't seen before.
 
 ## The four core frameworks (Phase 1 — build these)
 
@@ -83,11 +88,11 @@ no sample-size fragility, no external data.
 
 ### 4. Overtrading
 - Using timestamps + hold time (open->close): flag very short holds and high-frequency
-  trading, especially in fast markets (BTC15M, esports maps).
-- Note honestly: this fires mainly on the fast/short-hold SIDE BETS (esports, BTC15M),
-  NOT on the researched hold-to-settlement sports bets. That's expected and useful —
-  the side bets are where impulsive, high-volume action lives. Don't force it where it
-  doesn't apply (e.g. a moneyline held to settlement is not "overtrading").
+  trading, especially in markets that are inherently fast-moving (e.g. 15-minute crypto
+  contracts, esports maps) where rapid re-entry is easy.
+- Note honestly: markets with naturally long resolution windows (e.g. a moneyline held to
+  settlement) will rarely trigger this — that's expected, not a bug. Don't force an
+  overtrading read onto a bet that was simply held to its natural resolution.
 
 ### THE HEADLINE that ties #1 and #2 together (build this as the centerpiece)
 For any entry price, there's a win rate REQUIRED to break even after fees. Compare:
@@ -97,9 +102,10 @@ Example: "Your average entry demands a 64% win rate to profit after fees. You're
 with it. The other frameworks support it.
 
 ## Concentration — DEMOTED to a lightweight flag (not a full framework)
-For a game-bettor (not a long-term holder), concentration isn't a portfolio risk. Use it
-ONLY as a behavioral nudge: "you've lost your last N in a row in [category] — consider a
-break." Do not build it into a major analysis. Keep it small.
+For a short-horizon bettor (not a long-term holder), concentration isn't a portfolio risk
+in the traditional sense. Use it ONLY as a behavioral nudge: "you've lost your last N in a
+row in [category] — consider a break." Do not build it into a major analysis. Keep it
+small.
 
 ## Phase 2 (build later, after the core works)
 
