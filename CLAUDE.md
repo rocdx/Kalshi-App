@@ -15,6 +15,12 @@ numbers, never preachy. It shows people patterns they can't see in themselves.
 The goal is AWARENESS and ACCOUNTABILITY, not helping people bet more or win more. See
 "The rule that matters most" at the bottom.
 
+This is NOT just a fact display. A number on its own ("you bet 40% bigger after a loss")
+tells the user what happened but not what to do about it. Every framework that surfaces a
+clear, well-supported pattern should pair that fact with a concrete, actionable
+recommendation for how to counteract it — not just report it and move on. See "Advice,
+not just facts" below for the rules on how that advice must stay in-bounds.
+
 ## Who the user is
 
 Anyone who trades on Kalshi as a betting platform, across any market category — sports,
@@ -140,6 +146,28 @@ from an LLM's memory. Retrieve first, then explain.
   every loss. The willingness to say "this was bad luck" is a feature, not a weakness.
 - Never manufacture an insight to seem impressive. A confident false claim spends the
   trust the true claims earn.
+
+## Advice, not just facts
+
+Facts alone leave the user knowing WHAT their data shows but not WHAT TO DO about it.
+When a framework detects a clear, well-supported pattern (passes the honesty-rules bar
+above — not a small sample, not just variance), pair the fact with a concrete, actionable
+recommendation for counteracting it. Rules for that advice:
+
+- The advice must be BEHAVIORAL / self-regulation, never a betting-strategy or
+  edge-seeking tip. It's about changing how the user acts, not how to win more. (This is
+  the line that keeps "Advice, not just facts" from turning into "the casino" — see "The
+  rule that matters most.")
+- The advice must be specific to the pattern actually detected, not generic filler. A
+  fee-drag finding and a tilt finding should not get the same boilerplate suggestion.
+- Never advise a specific stake size, entry price, or market to bet — that crosses from
+  self-awareness into strategy.
+- If the pattern is severe (heavy loss-chasing, escalating tilt), pair the advice with the
+  responsible-gambling resource per "The rule that matters most," don't treat that as a
+  separate, optional step.
+- If a framework's finding doesn't clear the honesty bar (small sample, likely variance),
+  don't attach advice to it either — advice inherits the same evidentiary standard as the
+  fact it's based on.
 
 ## Build order & stack
 
