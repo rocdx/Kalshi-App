@@ -127,7 +127,7 @@ function App() {
       {bets.length > 0 && (
         <>
           <p style={styles.rowCount}>
-            {bets.length} bets parsed
+            You've made {bets.length} bets this year
             {skippedCount > 0
               ? ` (${skippedCount} non-trade rows skipped)`
               : ''}
