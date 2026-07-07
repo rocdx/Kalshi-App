@@ -28,6 +28,26 @@ const styles = {
     fontSize: 14,
     color: '#6b6375',
   },
+  howTo: {
+    marginTop: 20,
+    padding: '14px 18px',
+    border: '1px solid #e5e4e7',
+    borderRadius: 8,
+    background: '#f4f3ec',
+  },
+  howToTitle: {
+    margin: '0 0 8px',
+    fontSize: 13,
+    fontWeight: 600,
+    color: '#08060d',
+  },
+  howToList: {
+    margin: 0,
+    paddingLeft: 20,
+    fontSize: 13,
+    color: '#6b6375',
+    lineHeight: 1.7,
+  },
   error: {
     color: '#c0392b',
     fontFamily: 'monospace',
@@ -76,6 +96,16 @@ function App() {
     <div style={styles.app}>
       <h1 style={styles.heading}>Kalshi Transaction Upload</h1>
       <p style={styles.subtext}>Drag and drop your Kalshi transactions CSV below.</p>
+
+      <div style={styles.howTo}>
+        <p style={styles.howToTitle}>Don't have your CSV yet?</p>
+        <ol style={styles.howToList}>
+          <li>Open Kalshi on the web and sign in</li>
+          <li>Click the three bars in the top right</li>
+          <li>Click "Documents"</li>
+          <li>Click download under "Transactions"</li>
+        </ol>
+      </div>
 
       <Dropzone onFile={handleFile} fileName={fileName} />
 
