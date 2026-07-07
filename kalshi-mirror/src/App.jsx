@@ -3,10 +3,12 @@ import Dropzone from './components/Dropzone'
 import BetTable from './components/BetTable'
 import FeeDragCard from './components/FeeDragCard'
 import PnlTimelineChart from './components/PnlTimelineChart'
+import ConcentrationPieChart from './components/ConcentrationPieChart'
 import { parseCsvFile } from './lib/parseCsv'
 import { normalizeBet } from './lib/normalizeBet'
 import { computeFeeDrag } from './lib/feeDrag'
 import { computeDailyPnl } from './lib/dailyPnl'
+import { computeConcentration } from './lib/concentration'
 
 const styles = {
   app: {
@@ -66,6 +68,7 @@ function App() {
     [bets]
   )
   const dailyPnl = useMemo(() => computeDailyPnl(bets), [bets])
+  const concentration = useMemo(() => computeConcentration(bets), [bets])
 
   useEffect(() => {
     document.body.style.margin = '0'
@@ -121,6 +124,7 @@ function App() {
           </p>
           <PnlTimelineChart data={dailyPnl} />
           <FeeDragCard stats={feeDragStats} />
+          <ConcentrationPieChart data={concentration} />
           <BetTable bets={bets} />
         </>
       )}
