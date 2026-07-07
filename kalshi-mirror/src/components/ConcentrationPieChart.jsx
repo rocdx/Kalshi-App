@@ -5,7 +5,7 @@ const RED = '#c0392b'
 
 const COLORS = [
   '#2563eb', '#aa3bff', '#15803d', '#c0392b',
-  '#f59e0b', '#0891b2', '#db2777', '#6b6375',
+  '#f59e0b', '#0891b2', '#db2777', '#5a565f',
 ]
 
 const styles = {
