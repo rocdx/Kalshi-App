@@ -147,10 +147,11 @@ function CategoryRow({ item }) {
 
 export default function ConcentrationPieChart({ data }) {
   const topCategory = data.find((item) => item.sport !== 'Other') ?? data[0]
+  const rowsByWinRate = [...data].sort((a, b) => b.winRate - a.winRate)
 
   return (
     <div style={styles.card}>
-      <p style={styles.title}>What you bet on</p>
+      <p style={styles.title}>What you bet on this year:</p>
       <ResponsiveContainer width="100%" height={420}>
         <PieChart margin={{ top: 8, right: 8, bottom: 8, left: 8 }}>
           <Pie
@@ -174,7 +175,7 @@ export default function ConcentrationPieChart({ data }) {
       <ConcentrationHeadline top={topCategory} />
 
       <div style={styles.rows}>
-        {data.map((item) => (
+        {rowsByWinRate.map((item) => (
           <CategoryRow key={item.sport} item={item} />
         ))}
       </div>

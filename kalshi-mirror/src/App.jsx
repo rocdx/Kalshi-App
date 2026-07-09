@@ -21,6 +21,9 @@ const styles = {
     margin: '0 0 8px',
     fontSize: 32,
   },
+  kalshiGreen: {
+    color: '#00D964',
+  },
   subtext: {
     color: '#6b6375',
     margin: 0,
@@ -97,7 +100,9 @@ function App() {
 
   return (
     <div style={styles.app}>
-      <h1 style={styles.heading}>Kalshi Transaction Upload</h1>
+      <h1 style={styles.heading}>
+        <span style={styles.kalshiGreen}>Kalshi</span> Transaction Upload
+      </h1>
       <p style={styles.subtext}>Drag and drop your Kalshi transactions CSV below.</p>
 
       <div style={styles.howTo}>
