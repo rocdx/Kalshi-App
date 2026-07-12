@@ -143,6 +143,19 @@ export default function StakeAfterOutcomeChart({ stats }) {
     { label: 'After a loss', avg: stats.avgAfterLoss, count: stats.countAfterLoss },
   ]
 
+  if (!stats.hasEnoughData) {
+    return (
+      <div style={styles.card}>
+        <p style={styles.title}>Stake size: after a win vs. after a loss</p>
+        <p style={styles.headline}>
+          Not enough bets with both a prior win and a prior loss yet to make
+          this comparison — showing a chart here would be more misleading
+          than useful.
+        </p>
+      </div>
+    )
+  }
+
   return (
     <div style={styles.card}>
       <p style={styles.title}>Stake size: after a win vs. after a loss</p>
