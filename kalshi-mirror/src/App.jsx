@@ -4,11 +4,14 @@ import BetTable from './components/BetTable'
 import FeeDragCard from './components/FeeDragCard'
 import PnlTimelineChart from './components/PnlTimelineChart'
 import ConcentrationPieChart from './components/ConcentrationPieChart'
+import BetSequenceChart from './components/BetSequenceChart'
+import StakeAfterOutcomeChart from './components/StakeAfterOutcomeChart'
 import { parseCsvFile } from './lib/parseCsv'
 import { normalizeBet } from './lib/normalizeBet'
 import { computeFeeDrag } from './lib/feeDrag'
 import { computeDailyPnl } from './lib/dailyPnl'
 import { computeConcentration } from './lib/concentration'
+import { computeBetSequence, computeStakeAfterOutcome } from './lib/tiltSizing'
 
 const styles = {
   app: {
@@ -72,6 +75,8 @@ function App() {
   )
   const dailyPnl = useMemo(() => computeDailyPnl(bets), [bets])
   const concentration = useMemo(() => computeConcentration(bets), [bets])
+  const betSequence = useMemo(() => computeBetSequence(bets), [bets])
+  const stakeAfterOutcome = useMemo(() => computeStakeAfterOutcome(bets), [bets])
 
   useEffect(() => {
     document.body.style.margin = '0'
@@ -130,6 +135,8 @@ function App() {
           <PnlTimelineChart data={dailyPnl} />
           <FeeDragCard stats={feeDragStats} />
           <ConcentrationPieChart data={concentration} />
+          <BetSequenceChart data={betSequence} />
+          <StakeAfterOutcomeChart stats={stakeAfterOutcome} />
           <BetTable bets={bets} />
         </>
       )}
