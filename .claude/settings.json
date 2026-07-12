@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -o /dev/null -w \"TiltStakeChart: %{http_code}\\\\n\" http://localhost:5173/src/components/TiltStakeChart.jsx --max-time 5)",
+      "Bash(curl -s http://localhost:5173/src/components/TiltStakeChart.jsx)"
+    ]
+  }
+}

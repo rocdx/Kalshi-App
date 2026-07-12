@@ -8,7 +8,8 @@
       "Bash(curl -s http://localhost:5173/ -o /dev/null -w \"%{http_code}\\\\n\")",
       "Bash(npm install *)",
       "Bash(node -e ' *)",
-      "Bash(git check-ignore *)"
+      "Bash(git check-ignore *)",
+      "Bash(curl -s -o /dev/null -w \"TiltStakeChart: %{http_code}\\\\n\" http://localhost:5173/src/components/TiltStakeChart.jsx --max-time 5)"
     ]
   }
 }
